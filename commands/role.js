@@ -2,16 +2,16 @@ module.exports = {
     name: 'role',
     description: 'Role!',
     args: true,
-    usage: '<user> <roles> <add/remove>',
+    usage: '<user> <add/remove> <role>',
     aliases: ['role', 'add roles'],
     execute(message, args) {
-        const role = message.guild.roles.cache.find(role => role.name === 'Denizen');
+        const role = message.guild.roles.cache.find(role => role.name === args.slice(2).join(' '));
         const member = message.mentions.members.first();
 
-        if (member.roles.cache.some(role => role.name === 'Owner')) {
-            if (args[2] === 'add') {
+        if (message.author.id === '255865168708370432') {
+            if (args[1] === 'add') {
                 member.roles.add(role).catch(console.error);
-            } else if (args[2] === 'remove') {
+            } else if (args[1] === 'remove') {
                 member.roles.remove(role).catch(console.error);
             }
         } else {
