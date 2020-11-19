@@ -13,7 +13,7 @@ module.exports = {
         if (message.author.id === '255865168708370432') {
             message.guild.channels.create(channelName, {
                 type: channelType,
-                parent: channelType + ' channels',
+                // parent: channelType + ' channels',
                 permissionOverwrites: [
                     {
                         id: message.guild.id,
