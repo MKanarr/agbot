@@ -1,0 +1,25 @@
+{
+  "name": "discord",
+  "version": "1.0.0",
+  "description": "Discord Chatbot",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Matt Kanarr",
+  "license": "ISC",
+  "dependencies": {
+    "discord.js": "^12.2.0",
+    "discord.js-commando": "github:discordjs/Commando",
+    "googleapis": "^62.0.0"
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MKanarr/agbot.git"
+  },
+  "bugs": {
+    "url": "https://github.com/MKanarr/agbot/issues"
+  },
+  "homepage": "https://github.com/MKanarr/agbot#readme"
+}
