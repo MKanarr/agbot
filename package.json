@@ -9,9 +9,11 @@
   "author": "Matt Kanarr",
   "license": "ISC",
   "dependencies": {
+    "@discordjs/opus": "^0.3.3",
     "discord.js": "^12.2.0",
     "discord.js-commando": "github:discordjs/Commando",
-    "googleapis": "^62.0.0"
+    "googleapis": "^62.0.0",
+    "ytdl-core": "^4.1.4"
   },
   "devDependencies": {},
   "repository": {
