@@ -40,53 +40,9 @@ module.exports = {
 
           voiceChannel.join().then(connection => {
 
-
-            // console.log(connection);
-
             queueConstruct.connection = connection;
-            // console.log(queueConstruct.connection);
             play(message.guild.id, queueConstruct.songs[0]);
-            // const serverQueue = queue.get(message.guild.id);
-            // var song = queueConstruct.songs[0];
-            //
-            // if (!song) {
-            //   serverQueue.voiceChannel.leave();
-            //   queue.delete(message.guild.id);
-            //   return;
-            // }
-            //
-            // const stream = ytdl(song.url, { filter: 'audioonly' });
-            // const dispatcher = serverQueue.connection.play(stream, {
-            //   volume: 0.5,
-            // });
-            //
-            // dispatcher.on('finish', () => {
-            //   serverQueue.songs.shift();
-            //   var song = queueConstruct.songs[0];
-            //
-            //   console.log(song.url);
-            //
-            //   if (!serverQueue) {
-            //     voiceChannel.leave();
-            //   } else {
-            //     console.log('playing new song');
-            //
-            //     // issue bot does not leave when theres multiple songs
-            //
-            //     if (!song) {
-            //       serverQueue.voiceChannel.leave();
-            //       queue.delete(message.guild.id);
-            //       return;
-            //     }
-            //
-            //     const stream = ytdl(song.url, { filter: 'audioonly' });
-            //     const dispatcher = serverQueue.connection.play(stream, {
-            //       volume: 0.5,
-            //     });
-            //   }
-            // });
-            //
-            // dispatcher.on('error', console.error);
+
           })
         } catch (error) {
           console.log('Error connecting to voice channel');
@@ -100,22 +56,6 @@ module.exports = {
       }
 
       message.channel.send('Play some funky music!');
-
-      // if (!message.guild.voiceConnection) {
-      //   message.member.voice.channel.join().then(connection => {
-      //     const stream = ytdl(url, { filter: 'audioonly' });
-      //     const dispatcher = connection.play(stream, {
-      //       volume: 0.5,
-      //     });
-      //
-      //     dispatcher.on('finish', () => {
-      //         message.member.voice.channel.leave();
-      //       }
-      //     );
-      //
-      //     dispatcher.on('error', console.error);
-      //   })
-      // }
     },
 };
 
