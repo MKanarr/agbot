@@ -1,6 +1,7 @@
 
 const fs = require('fs');
 const Discord = require('discord.js');
+const memberCount = require('./commands/member-count.js');
 const { prefix, token } = require('./config.json');
 
 const client = new Discord.Client();
@@ -17,6 +18,8 @@ const cooldowns = new Discord.Collection();
 
 client.once('ready', () => {
 	console.log('Ready!');
+
+	memberCount(client);
 });
 
 client.on('message', message => {
