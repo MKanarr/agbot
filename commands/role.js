@@ -8,7 +8,7 @@ module.exports = {
         const role = message.guild.roles.cache.find(role => role.name === args.slice(args.length - 1).join(' '));
 
         // console.log(message.mentions.members.first());
-        
+        // issue ned an array of roles
         const response = message.mentions.members.map(member => {
             if (message.author.id === '255865168708370432') {
                 if (args[args.length - 2] === 'add') {
@@ -29,6 +29,3 @@ module.exports = {
         message.channel.send(response);
     },
 };
-
-
-  
