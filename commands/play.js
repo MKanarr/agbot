@@ -18,6 +18,11 @@ module.exports = {
         url: args[0],
       }
 
+      if (!voiceChannel) {
+        console.log('not in voice channel');
+        return message.channel.send(`${message.author}, chief, you're not in a voice channel.\nWhat am I supposed to join?`);
+      }
+
       if (!serverQueue) {
         console.log('queue is undefined');
         const queueConstruct = {
