@@ -20,7 +20,7 @@ module.exports = {
             // Authorize a client with credentials, then call the Google Sheets API.
             authorize(JSON.parse(content), listMajors);
         });
-  
+
         /**
          * Create an OAuth2 client with the given credentials, and then execute the
          * given callback function.
@@ -31,7 +31,7 @@ module.exports = {
             const {client_secret, client_id, redirect_uris} = credentials.installed;
             const oAuth2Client = new google.auth.OAuth2(
                 client_id, client_secret, redirect_uris[0]);
-        
+
             // Check if we have previously stored a token.
             fs.readFile(TOKEN_PATH, (err, token) => {
             if (err) return getNewToken(oAuth2Client, callback);
@@ -39,7 +39,7 @@ module.exports = {
             callback(oAuth2Client);
             });
         }
-  
+
         /**
          * Get and store new token after prompting for user authorization, and then
          * execute the given callback with the authorized OAuth2 client.
@@ -70,7 +70,7 @@ module.exports = {
             });
             });
         }
-  
+
         /**
          * Prints the names and majors of students in a sample spreadsheet:
          * @see https://docs.google.com/spreadsheets/d/1EeTqkbwk4Y5wRvQTa_kqpKtxR_mUZL74cHJ0-61gpcg/edit?usp=sharing
@@ -106,10 +106,10 @@ module.exports = {
 	            .addFields(
 		            { name: 'Regular field title', value: 'Some value here' },
 		            { name: '\u200B', value: '\u200B' },
-		            { name: 'Inline field title', value: 'Some value here', inline: true },
-		            { name: 'Inline field title', value: 'Some value here', inline: true },
+		            { name: 'First Name', value: 'Some value here', inline: true },
+		            { name: 'Last Name', value: 'Some value here', inline: true },
 	            )
-                .addField('Inline field title', 'Some value here', true)
+                .addField('Points', 'Some value here', true)
                 .setImage('https://i.imgur.com/wSTFkRM.png')
                 .setTimestamp()
                 .setFooter('Some footer text here', 'https://i.imgur.com/wSTFkRM.png');
