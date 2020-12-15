@@ -13,7 +13,7 @@
     "discord.js": "^12.2.0",
     "discord.js-commando": "github:discordjs/Commando",
     "googleapis": "^62.0.0",
-    "ytdl-core": "^4.1.4"
+    "ytdl-core": "^4.1.5"
   },
   "devDependencies": {},
   "repository": {
