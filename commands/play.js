@@ -18,6 +18,24 @@ module.exports = {
         url: args[0],
       }
 
+      // if (!ytdl.validateURL(args[0])) {
+      //   console.log('invalid url');
+      //   return;
+      // }
+
+      try {
+        var videoID = ytdl.getURLVideoID(args[0]);
+        console.log(videoID);
+
+        if (!ytdl.validateID(videoID)) {
+          console.log('invalid video id format');
+          return message.channel.send('Invalid YouTube video id');
+        }
+      } catch (error) {
+        console.log(error);
+        return message.channel.send(`Could not find YouTube video id`);
+      }
+
       if (!voiceChannel) {
         console.log('not in voice channel');
         return message.channel.send(`${message.author}, chief, you're not in a voice channel.\nWhat am I supposed to join?`);
@@ -83,5 +101,10 @@ function play(guild, song) {
     play(guild, serverQueue.songs[0]);
   });
 
-  dispatcher.on('error', console.error);
+  dispatcher.on('error', error => {
+    console.log(error);
+    serverQueue.voiceChannel.leave();
+    queue.delete(guild);
+    return serverQueue.textChannel.send(`${error}`);
+  });
 }
