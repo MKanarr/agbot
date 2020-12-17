@@ -3,7 +3,7 @@ const fs = require('fs');
 const Discord = require('discord.js');
 const memberCount = require('./commands/member-count.js');
 const welcomeMember = require('./commands/welcome.js');
-const { prefix, token } = require('./config.json');
+// const { prefix, token } = require('./config.json');
 
 const client = new Discord.Client();
 client.commands = new Discord.Collection();
@@ -25,9 +25,9 @@ client.once('ready', () => {
 });
 
 client.on('message', message => {
-	if (!message.content.startsWith(prefix) || message.author.bot) return;
+	if (!message.content.startsWith(process.env.DJS_PREFIX) || message.author.bot) return;
 
-	const args = message.content.slice(prefix.length).trim().split(/ +/);
+	const args = message.content.slice(process.env.DJS_PREFIX.length).trim().split(/ +/);
 	const commandName = args.shift().toLowerCase();
 
 	const command = client.commands.get(commandName)
@@ -43,7 +43,7 @@ client.on('message', message => {
 		let reply = `You didn't provide any arguments, ${message.author}!`;
 
 		if (command.usage) {
-			reply += `\nThe proper usage would be: \`${prefix}${command.name} ${command.usage}\``;
+			reply += `\nThe proper usage would be: \`${process.env.DJS_PREFIX}${command.name} ${command.usage}\``;
 		}
 
 		return message.channel.send(reply);
@@ -77,4 +77,4 @@ client.on('message', message => {
 	}
 });
 
-client.login(token);
+client.login(process.env.DJS_TOKEN);
