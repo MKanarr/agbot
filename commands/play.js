@@ -1,7 +1,6 @@
 const ytdl = require('ytdl-core');
 
 // maintain server queues
-// don't want global queue across servers
 global.queue = new Map();
 
 module.exports = {
