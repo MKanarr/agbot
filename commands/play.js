@@ -103,8 +103,14 @@ function play(guild, song) {
 
   dispatcher.on('error', error => {
     console.log(error);
-    serverQueue.voiceChannel.leave();
-    queue.delete(guild);
+    serverQueue.songs.shift();
+
+    if (serverQueue.songs) {
+      console.log('still have songs in the queue');
+      play(guild, serverQueue.songs[0]);
+      return serverQueue.textChannel.send(`${error}`);
+    }
+
     return serverQueue.textChannel.send(`${error}`);
   });
 }
