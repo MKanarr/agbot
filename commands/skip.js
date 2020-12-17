@@ -17,6 +17,7 @@ module.exports = {
         return message.channel.send('You are crazy, nothing is playing');
       }
 
+      serverQueue.playing = true;
       serverQueue.connection.dispatcher.end();
       return message.channel.send('Skipped song');
     },
