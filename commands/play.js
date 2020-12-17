@@ -1,4 +1,5 @@
 const ytdl = require('ytdl-core');
+const ytsr = require('ytsr');
 
 // maintain server queues
 // don't want global queue across servers
@@ -18,6 +19,29 @@ module.exports = {
         url: args[0],
       }
 
+      const options = {
+        pages: 1,
+      }
+
+      async function search() {
+        let searchResponse = await ytsr('star wars', options)
+        .catch(error => { throw error });
+
+        return searchResponse;
+      }
+
+
+      var myResponse = search();
+
+      console.log(myResponse);
+
+      var myResponse = search()
+          .then(response => return response.items)
+          .catch(error => console.log(error));
+
+
+
+      return;
       // if (!ytdl.validateURL(args[0])) {
       //   console.log('invalid url');
       //   return;
