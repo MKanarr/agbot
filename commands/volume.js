@@ -6,6 +6,7 @@ module.exports = {
     execute(message, args) {
       const voiceChannel = message.member.voice.channel;
       const serverQueue = queue.get(message.guild.id);
+      var re = new RegExp('^[1-9]\d*(\.\d+)?$');
       var volumeLevel = args[0];
 
       if (!voiceChannel) {
@@ -18,9 +19,13 @@ module.exports = {
         return message.channel.send('You are crazy, nothing is playing');
       }
 
+      if (!re.test(volumeLevel)) {
+        return message.channel.send(`${message.author}, you did not provide a volume level between 0 and 2, dummy.`)
+      }
+
       if (volumeLevel < 0 || volumeLevel > 2) {
         console.log('exceeds volume range');
-        return message.channel.send(`${message.author}, are you crazy?\nHere's the rules, chief -> 0 <= volumeLevel <= 2\n 0 (muted), 2 (blow your ears out)`);
+        return message.channel.send(`${message.author}, are you crazy?\nHere's the rules, chief: 0 <= volumeLevel <= 2\n 0 (muted), 2 (blow your ears out)`);
       }
 
       serverQueue.connection.dispatcher.setVolume(volumeLevel);
