@@ -6,7 +6,7 @@ module.exports = {
     execute(message, args) {
       const voiceChannel = message.member.voice.channel;
       const serverQueue = queue.get(message.guild.id);
-      var re = new RegExp('^[1-9]\d*(\.\d+)?$');
+      var re = new RegExp('^[0-9]\d*(\.\d+)?$');
       var volumeLevel = args[0];
 
       if (!voiceChannel) {
@@ -20,7 +20,7 @@ module.exports = {
       }
 
       if (!re.test(volumeLevel)) {
-        return message.channel.send(`${message.author}, you did not provide a volume level between 0 and 2, dummy.`)
+        return message.channel.send(`${message.author}, invalid volume level.\nProvide a volume level between 0 and 2 (i.e 0.25), dummy.`);
       }
 
       if (volumeLevel < 0 || volumeLevel > 2) {
