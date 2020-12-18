@@ -2,7 +2,7 @@ module.exports = {
     name: 'newrole',
     description: 'Create new role',
     args: true,
-    usage: '<color> <role name>',
+    usage: '<role name>',
     aliases: ['more pls', 'add role'],
     execute(message, args) {
 
