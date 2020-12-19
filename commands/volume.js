@@ -6,7 +6,7 @@ module.exports = {
     execute(message, args) {
       const voiceChannel = message.member.voice.channel;
       const serverQueue = queue.get(message.guild.id);
-      var re = new RegExp('^[0-9]\d*(\.\d+)?$');
+      var re = new RegExp(/^[0-9]\d*(\.\d+)?$/);
       var volumeLevel = args[0];
 
       if (!voiceChannel) {
