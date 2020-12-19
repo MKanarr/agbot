@@ -17,7 +17,7 @@ module.exports = {
         // parses out channel type
         var reg = new RegExp(/voice$|text$/i);
         // parses out channel name
-        var regi = new RegExp(/[^~,]*\S(?= text$| voice$)/i);
+        var regi = new RegExp(/[^~,]*\S(?=\s+text$|\s+voice$)/i);
 
         var msg = message.content;
 
@@ -29,10 +29,16 @@ module.exports = {
         // check if channel type is provided
         if (parsedMsg.match(reg) === null) {
           console.log('channel type not provided');
-          return message.channel.send(`${message.author}, please provide a channel type: text or voice`);
+          return message.channel.send(`${message.author}, please provide a channel type separated by a space: text or voice`);
         }
 
         var channelType = parsedMsg.match(reg)[0].toLowerCase();
+
+        if (parsedMsg.match(regi) === null) {
+          console.log('channel type not separated by space');
+          return message.channel.send(`${message.author}, please separate channel type by at least one space.`);
+        }
+
         var channelName = parsedMsg.match(regi)[0];
 
         console.log(channelType);
@@ -55,5 +61,7 @@ module.exports = {
                 },
             ],
         });
+
+        return message.channel.send(`${message.author}, your ${channelType} channel ${channelName} has been created!`);
     },
 };
